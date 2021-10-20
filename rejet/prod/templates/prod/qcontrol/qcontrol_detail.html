@@ -1,0 +1,44 @@
+{% extends "prod/base.html" %}
+{% block sidebar %}
+        <li class="header">Qualité control</li>
+          <li classe="{% if selected == 'home' %}active{% endif %}">
+            <a href="{% url 'hello' %}">
+              <i class="fa fa-home" aria-hidden="true"></i> Homepage
+            </a>
+          </li>
+          <li classe="{% if selected == 'qcontrols' %}active{% endif %}">
+            <a href="{% url 'qcontrols' %}">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> qualité/control
+            </a>
+          </li>
+{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        pack id
+        <a href="{% url 'update_qcontrol' qcontrol.id %}" class="close">
+            <i class="fas fa-pen"></i>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col"><strong>date</strong> : {{qcontrol.date_mise_a_jour}}<br></div>
+            <!--div class="col"><strong>pack</strong> : {{qcontrol.pack_id}}<br></div>            
+            <div class="col"><strong>machine</strong> : {{qcontrol.machine}}<br></div-->
+        </div>
+        <div class="row">
+            <!--div class="col"><strong>odc</strong> : {{qcontrol.odc}}<br></div-->
+            <div class="col"><strong>quantite</strong> : {{qcontrol.quantite}}<br></div>
+            <div class="col"><strong>carte_ok</strong> : {{qcontrol.carte__ok}}<br></div>
+        </div>
+        <div class="row">
+            <div class="col"><strong>rejet_machine</strong> : {{qcontrol.rejet}}<br></div>
+            <div class="col"><strong>retoure_stock</strong> : {{qcontrol.retoure_stock}}<br></div>
+        </div>
+        <div class="row">
+            <div class="col"><strong>commentaire</strong> : {{qcontrol.commentaire}}<br></div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

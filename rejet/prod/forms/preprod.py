@@ -7,4 +7,4 @@ class PreprodForm(ModelForm):
         model = Preprod
         fields = ("date_mise_a_jour","machine_name","pack_id","odc"
         ,"quantite","carte_perso_ok","rejet_machine","retoure_stock"
-        ,"commentaire")
+        ,"autres","commentaire")

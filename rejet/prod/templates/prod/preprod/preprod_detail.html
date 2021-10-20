@@ -1,4 +1,17 @@
 {% extends "prod/base.html" %}
+{% block sidebar %}
+        <li class="header">production</li>
+          <li classe="{% if selected == 'home' %}active{% endif %}">
+            <a href="{% url 'hello' %}">
+              <i class="fa fa-home" aria-hidden="true"></i> Homepage
+            </a>
+          </li>
+          <li classe="{% if selected == 'preprods' %}active{% endif %}">
+            <a href="{% url 'preprods' %}">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> production
+            </a>
+          </li>
+{% endblock %}
 {% block content %}
 <div class="card">
     <div class="card-header">
@@ -19,9 +32,11 @@
             <div class="col"><strong>carte_perso_ok</strong> : {{preprod.carte_perso_ok}}<br></div>
         </div>
         <div class="row">
-            <div class="col"><strong>pack</strong> : {{preprod.rejet_machine}}<br></div>
-            <div class="col"><strong>pack</strong> : {{preprod.retoure_stock}}<br></div>
-            <div class="col"><strong>pack</strong> : {{preprod.commentaire}}<br></div>
+            <div class="col"><strong>rejet_machine</strong> : {{preprod.rejet_machine}}<br></div>
+            <div class="col"><strong>retoure_stock</strong> : {{preprod.retoure_stock}}<br></div>
+        </div>
+        <div class="row">
+            <div class="col"><strong>commentaire</strong> : {{preprod.commentaire}}<br></div>
         </div>
     </div>
 

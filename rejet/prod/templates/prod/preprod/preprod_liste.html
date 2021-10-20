@@ -1,5 +1,22 @@
 {% extends "prod/base.html" %}
-
+{% block sidebar %}
+        <li class="header">production</li>
+          <li classe="{% if selected == 'home' %}active{% endif %}">
+            <a href="{% url 'hello' %}">
+              <i class="fa fa-home" aria-hidden="true"></i> Homepage
+            </a>
+          </li>
+          <li classe="{% if selected == 'preprods' %}active{% endif %}">
+            <a href="{% url 'preprods' %}">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> production
+            </a>
+          </li>
+{% endblock %}
+{% block ajout %}
+<div class="text-right">
+    <a href="{% url 'create_preprod' %}" class="btn btn-info">Ajouter une entree</a>
+</div>
+{% endblock %}
 {% block content %}
 <div>
     <table>
@@ -43,9 +60,6 @@
         {% if preprod_liste.has_next %}
         - <a href="{% url 'preprods' %}?page={{ preprod_liste.next_page_number}}">Suivante</a>
         {% endif %}
-    </div>
-    <div class="text-right">
-        <a href="{% url 'create_preprod' %}" class="btn btn-info">Ajouter une entree</a>
     </div>
 </div>
 {% endblock %}
