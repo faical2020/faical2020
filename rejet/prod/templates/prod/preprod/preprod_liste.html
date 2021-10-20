@@ -1,0 +1,51 @@
+{% extends "prod/base.html" %}
+
+{% block content %}
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th> ID_PACK</th>
+                <th>date </th>
+                <th>machine</th>
+                <th>N°ODC</th>
+                <th>Quantité</th>
+                <th >carte ok perso</th>
+                <th>rejet_machine</th>
+                <th>retour au stock</th>
+                <th>commentaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prod in preprod_liste %}
+            <tr>
+                <td><a href="{% url 'detail_preprod' prod.id %}">{{ prod.pack_id }}</td>
+                <td>{{ prod.date_mise_a_jour }}</td>
+                <td>{{ prod.machine_name }}</td>
+                <td>{{ prod.odc }}</td>
+                <td>{{ prod.quantite }}</td>
+                <td>{{ prod.carte_perso_ok }}</td>
+                <td>{{ prod.rejet_machine }}</td>
+                <td>{{ prod.retoure_stock }}</td>
+                <td>{{ prod.commentaire}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div classe="pagination">
+        {% if preprod_liste.has_previous %}
+        <a href="{% url 'preprods' %}?page={{ preprod_liste.previous_page_number}}">Précedente</a>
+        {% endif %}
+
+        <span class="current">
+            page {{ preprod_liste.number}} sur {{ preprod_liste.paginator.num_pages}}
+        </span>
+        {% if preprod_liste.has_next %}
+        - <a href="{% url 'preprods' %}?page={{ preprod_liste.next_page_number}}">Suivante</a>
+        {% endif %}
+    </div>
+    <div class="text-right">
+        <a href="{% url 'create_preprod' %}" class="btn btn-info">Ajouter une entree</a>
+    </div>
+</div>
+{% endblock %}
