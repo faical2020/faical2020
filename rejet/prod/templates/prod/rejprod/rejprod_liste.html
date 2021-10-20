@@ -1,0 +1,65 @@
+{% extends "prod/base.html" %}
+{% block sidebar %}
+        <li class="header">rejet Cnie</li>
+          <li classe="{% if selected == 'home' %}active{% endif %}">
+            <a href="{% url 'hello' %}">
+              <i class="fa fa-home" aria-hidden="true"></i> Homepage
+            </a>
+          </li>
+          <li classe="{% if selected == 'rejprods' %}active{% endif %}">
+            <a href="{% url 'rejprods' %}">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> rejet Cnie
+            </a>
+          </li>
+{% endblock %}
+{% block ajout %}
+<div class="text-right">
+    <a href="{% url 'create_rejprod' %}" class="btn btn-info">Ajouter une entree</a>
+</div>
+{% endblock %}
+{% block content %}
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th> ID</th>
+                <th>date </th>
+                <!--th>machine</th>
+                <th>N°ODC</th>
+                <th>Quantité</th-->
+                <th >carte ok perso</th>
+                <th>rejet_machine</th>
+                <th>retour au stock</th>
+                <th>commentaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for qual in rejprod_liste %}
+            <tr>
+                <td><a href="{% url 'detail_rejprod' qual.id %}">{{ qual.id }}</td>
+                <td>{{ qual.date_mise_a_jour }}</td>
+                <!--td>{{ qual.machine_name }}</td>
+                <td>{{ qual.odc }}</td-->
+                <td>{{ qual.quantite }}</td>
+                <td>{{ qual.carte_ok }}</td>
+                <td>{{ qual.rejet_machine }}</td>
+                <td>{{ qual.retoure_stock }}</td>
+                <td>{{ qual.commentaire}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div classe="pagination">
+        {% if rejprod_liste.has_previous %}
+        <a href="{% url 'rejprods' %}?page={{ rejprod_liste.previous_page_number}}">Précedente</a>
+        {% endif %}
+
+        <span class="current">
+            page {{ rejprod_liste.number}} sur {{ rejprod_liste.paginator.num_pages}}
+        </span>
+        {% if rejprod_liste.has_next %}
+        - <a href="{% url 'rejprods' %}?page={{ rejprod_liste.next_page_number}}">Suivante</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

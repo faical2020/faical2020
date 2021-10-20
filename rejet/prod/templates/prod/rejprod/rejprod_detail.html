@@ -1,0 +1,44 @@
+{% extends "prod/base.html" %}
+{% block sidebar %}
+        <li class="header">rejet Cnie</li>
+          <li classe="{% if selected == 'home' %}active{% endif %}">
+            <a href="{% url 'hello' %}">
+              <i class="fa fa-home" aria-hidden="true"></i> Homepage
+            </a>
+          </li>
+          <li classe="{% if selected == 'rejprods' %}active{% endif %}">
+            <a href="{% url 'rejprods' %}">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> rejet Cnie
+            </a>
+          </li>
+{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        pack id
+        <a href="{% url 'update_rejprod' rejprod.id %}" class="close">
+            <i class="fas fa-pen"></i>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col"><strong>date</strong> : {{rejprod.date_mise_a_jour}}<br></div>
+            <!--div class="col"><strong>pack</strong> : {{rejprod.pack_id}}<br></div>            
+            <div class="col"><strong>machine</strong> : {{rejprod.machine}}<br></div-->
+        </div>
+        <div class="row">
+            <!--div class="col"><strong>odc</strong> : {{rejprod.odc}}<br></div-->
+            <div class="col"><strong>quantite</strong> : {{rejprod.quantite}}<br></div>
+            <div class="col"><strong>carte_ok</strong> : {{rejprod.carte__ok}}<br></div>
+        </div>
+        <div class="row">
+            <div class="col"><strong>rejet_machine</strong> : {{rejprod.rejet}}<br></div>
+            <div class="col"><strong>retoure_stock</strong> : {{rejprod.retoure_stock}}<br></div>
+        </div>
+        <div class="row">
+            <div class="col"><strong>commentaire</strong> : {{rejprod.commentaire}}<br></div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

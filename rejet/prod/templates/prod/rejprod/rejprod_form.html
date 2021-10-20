@@ -1,0 +1,40 @@
+{% extends "prod/base.html" %}
+{% block sidebar %}
+        <li class="header">rejet Cnie</li>
+          <li classe="{% if selected == 'home' %}active{% endif %}">
+            <a href="{% url 'hello' %}">
+              <i class="fa fa-home" aria-hidden="true"></i> Homepage
+            </a>
+          </li>
+          <li classe="{% if selected == 'rejprods' %}active{% endif %}">
+            <a href="{% url 'rejprods' %}">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> rejet Cnie
+            </a>
+          </li>
+{% endblock %}
+{% block content %}
+
+{% if object %}
+<h3>Modification de {{object.pack_id}}</h3>
+{% else %}
+<h3>Créer une nouvelle entrée</h3>
+{% endif %}
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <div class="row">
+        <div class="col">
+            {% if object %}
+            <a href="{% url 'detail_rejprod' object.id %}" class="btn btn-secondary">Annuler</a>
+            {% else %}
+            <a href="{% url 'rejprods' %}" class="btn btn-secondary">Annuler</a>
+            {% endif %}
+        </div>
+        <div class="col">
+            <input class="btn btn-info" type="submit" />
+        </div>
+    </div>
+
+</form>
+{% endblock %}
