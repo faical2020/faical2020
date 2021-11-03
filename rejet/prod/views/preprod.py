@@ -1,16 +1,44 @@
 
 from django.core.paginator import EmptyPage, Paginator
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.utils.http import urlencode
 from django.views.generic.edit import UpdateView
 from prod.models.preprod import Preprod
-from prod.forms.preprod import PreprodForm
+from prod.forms.preprod import PreprodForm, PreprodSearchForm
 
 def preprod_liste(request):
-    selected = "preprod"
+    selected = "preprods"
     preprod_liste = Preprod.objects.all()
-    paginator = Paginator(preprod_liste.order_by('-date_mise_a_jour'),10)
+   
+    if request.method == "POST":
+        form = PreprodSearchForm(request.POST)
+        if form.is_valid():
+            base_url = reverse('preprods')
+            query_string = urlencode(form.cleaned_data)
+            url = '{}?{}'.format(base_url, query_string)
+            return redirect(url)
+    else:
+        form = PreprodSearchForm()
+        
+        packid_form = request.GET.get("packid","")
+        odc_form = request.GET.get("odc","")
+        quantite_form = request.GET.get("quantite","")
+        
+        
+        
+        if packid_form is not None:
+            preprod_liste = preprod_liste.filter(pack_id__icontains= packid_form)
+            form.fields['packid'].intial = packid_form
+        if odc_form is not None:
+            preprod_liste = preprod_liste.filter(odc__icontains= odc_form)
+            form.fields['odc'].intial = odc_form
+        if quantite_form is not None:
+            preprod_liste = preprod_liste.filter(quantite__icontains= quantite_form)
+            form.fields['quantite'].intial = quantite_form    
+
+    paginator = Paginator(preprod_liste.order_by('-pack_id'),10)
     try:
         page = request.GET.get("page")
         if not page:

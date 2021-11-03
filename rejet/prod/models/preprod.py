@@ -13,3 +13,7 @@ class Preprod(models.Model):
     autres = models.IntegerField(default=0)
     date_de_creation =  models.DateField(verbose_name="date de 1er creation",auto_now_add=True)
     commentaire = models.CharField(max_length=1000, blank = True)
+
+    def __str__(self):
+        return " date_mise_a_jour= %s machine_name= %s pack_id= %s odc=%s quantite=%s carte_perso_ok=%s" % (self.date_mise_a_jour,
+        self.machine_name , self.pack_id ,self.odc ,self.quantite ,self.carte_perso_ok )

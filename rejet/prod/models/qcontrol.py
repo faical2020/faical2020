@@ -4,6 +4,7 @@ from .preprod import Preprod
 
 # Create your models here.
 class Qcontrol(models.Model):
+   
     date_mise_a_jour = models.DateField(verbose_name="date de mise à jour",auto_now=False)
     quantite = models.IntegerField()
     carte_ok = models.IntegerField()

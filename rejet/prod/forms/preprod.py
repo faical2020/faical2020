@@ -1,4 +1,4 @@
-from django.forms import ModelForm, fields
+from django.forms import ModelForm, fields, Form, DateField, IntegerField,CharField
 
 from prod.models.preprod import Preprod
 
@@ -8,3 +8,9 @@ class PreprodForm(ModelForm):
         fields = ("date_mise_a_jour","machine_name","pack_id","odc"
         ,"quantite","carte_perso_ok","rejet_machine","retoure_stock"
         ,"autres","commentaire")
+
+class PreprodSearchForm(Form):
+    
+    packid = CharField(required=False)
+    odc = CharField(required=False)
+    quantite = CharField(required=False)

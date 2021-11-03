@@ -43,12 +43,9 @@
         <div class="container-fluid">
       
           <!-- Main component for a primary marketing message or call to action -->
+          {% block ajout %}
+          {% endblock %}
           
-          <div class="jumbotron">
-            <h1>prod</h1>
-            {% block ajout %}
-            {% endblock %}
-          </div>
           {% block content %}
           {% endblock %}
         </div>
