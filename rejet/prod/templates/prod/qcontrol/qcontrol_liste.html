@@ -22,13 +22,13 @@
     <table>
         <thead>
             <tr>
-                <th> ID</th>
+                <th> pack_ID</th>
                 <th>date </th>
-                <!--th>machine</th>
+                <th>machine</th>
                 <th>N°ODC</th>
-                <th>Quantité</th-->
-                <th >carte ok perso</th>
-                <th>rejet_machine</th>
+                <th>Quantité</th>
+                <th >carte ok </th>
+                <th>rejet</th>
                 <th>retour au stock</th>
                 <th>commentaire</th>
             </tr>
@@ -36,13 +36,13 @@
         <tbody>
             {% for qual in qcontrol_liste %}
             <tr>
-                <td><a href="{% url 'detail_qcontrol' qual.id %}">{{ qual.id }}</td>
+                <td><a href="{% url 'detail_qcontrol' qual.id %}">{{ qual.preprod.pack_id }}</td>
                 <td>{{ qual.date_mise_a_jour }}</td>
-                <!--td>{{ qual.machine_name }}</td>
-                <td>{{ qual.odc }}</td-->
-                <td>{{ qual.quantite }}</td>
+                <td>{{ qual.preprod.machine_name }}</td>
+                <td>{{ qual.preprod.odc }}</td>
+                <td>{{ qual.preprod.quantite }}</td>
                 <td>{{ qual.carte_ok }}</td>
-                <td>{{ qual.rejet_machine }}</td>
+                <td>{{ qual.rejet }}</td>
                 <td>{{ qual.retoure_stock }}</td>
                 <td>{{ qual.commentaire}}</td>
             </tr>

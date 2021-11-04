@@ -11,7 +11,13 @@ from prod.forms.qcontrol import QcontrolForm
 def qcontrol_liste(request):
     selected = "qcontrol"
     qcontrol_liste = Qcontrol.objects.all()
-    paginator = Paginator(qcontrol_liste.order_by('-date_mise_a_jour'),10)
+
+    for prod in Preprod.objects.all():
+        if not hasattr(prod,'Qprod'):
+            q= Qcontrol(preprod= prod)
+            q.save()
+   
+    paginator = Paginator(qcontrol_liste.order_by('-preprod'),10)
     try:
         page = request.GET.get("page")
         if not page:

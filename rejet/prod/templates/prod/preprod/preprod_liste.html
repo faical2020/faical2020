@@ -22,11 +22,11 @@
           <form action="{% url 'preprods' %}" method="post">
               <div class="card-body">
                   {%csrf_token %}
-                  <label for="packid">ID_Pack:</label>
+                  <label for="packid"> </label>
                   {{ form.packid}}
-                  <label for="doc">ODC.n°:</label>
+                  <label for="doc"> </label>
                   {{ form.odc}}
-                  <label for="quantite">Quantite:</label>
+                  <label for="quantite"> </label>
                   {{ form.quantite}}
                   <div class="text-left">
                   <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Recherche</button>    

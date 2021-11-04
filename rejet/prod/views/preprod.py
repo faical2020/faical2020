@@ -6,12 +6,13 @@ from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
 from django.views.generic.edit import UpdateView
 from prod.models.preprod import Preprod
+from prod.models.qcontrol import Qcontrol
 from prod.forms.preprod import PreprodForm, PreprodSearchForm
 
 def preprod_liste(request):
     selected = "preprods"
     preprod_liste = Preprod.objects.all()
-   
+
     if request.method == "POST":
         form = PreprodSearchForm(request.POST)
         if form.is_valid():
