@@ -35,9 +35,9 @@
         </thead>
         <tbody>
             {% for qual in qcontrol_liste %}
-            <tr>
+            <tr {% if qual.date_mise_a_jour is  None  %} style="background-color:rgb(245, 212, 212);" {% endif %}>
                 <td><a href="{% url 'detail_qcontrol' qual.id %}">{{ qual.preprod.pack_id }}</td>
-                <td>{{ qual.date_mise_a_jour }}</td>
+                <td >{{ qual.date_mise_a_jour }}</td>
                 <td>{{ qual.preprod.machine_name }}</td>
                 <td>{{ qual.preprod.odc }}</td>
                 <td>{{ qual.preprod.quantite }}</td>
