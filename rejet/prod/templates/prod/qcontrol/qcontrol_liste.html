@@ -12,9 +12,33 @@
             </a>
           </li>
 {% endblock %}
+
 {% block ajout %}
+<div class="raw p-4">
+  <div class="col-sm-12 mt-3">
+      <div class= "card">
+          <div class="card-header">
+              Ajout / Recherche
+          </div>
+          <form action="{% url 'qcontrols' %}" method="post">
+              <div class="card-body">
+                  {%csrf_token %}
+                  <label for="packid"> </label>
+                  {{ form.packid}}
+                  <label for="doc"> </label>
+                  {{ form.odc}}
+                  <label for="quantite"> </label>
+                  {{ form.quantite}}
+                  <div class="text-left">
+                  <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Recherche</button>    
+                  </div>                  
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 <div class="text-right">
-    <a href="{% url 'create_qcontrol' %}" class="btn btn-info">Ajouter une entree</a>
+  <a href="{% url 'create_qcontrol' %}" class="btn btn-info">Ajouter une entree</a>
 </div>
 {% endblock %}
 {% block content %}

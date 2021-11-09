@@ -15,14 +15,87 @@
 {% block content %}
 
 {% if object %}
-<h3>Modification de {{object.pack_id}}</h3>
+<h3>Controle Qualité du Pack : {{qcontrol.preprod.pack_id}}</h3>
 {% else %}
 <h3>Créer une nouvelle entrée</h3>
 {% endif %}
 
+
+<form>
+  <div class="form-group row">
+    
+    <label for="packid" class="col-sm-2 col-form-label col-form-label-sm">pack_id</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control form-control-sm" id="pakid"  value=" {{qcontrol.preprod.pack_id}}"  disabled>
+    </div>
+   
+  </div>
+  <div class="form-group row">  
+    
+    <label for="odc" class="col-sm-2 col-form-label col-form-label-sm">odc</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control " id="odc"  value="{{qcontrol.preprod.odc}}" disabled>
+    </div>
+    
+  </div>
+  <div class="form-group row">
+    
+    <label for="machine" class="col-sm-2 col-form-label col-form-label-sm">machine</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control form-control-sm" id="machine"  value=" {{qcontrol.preprod.machine_name}}" disabled>
+    </div>
+   
+  </div>
+  <div class="form-group row">  
+    
+    <label for="quantite" class="col-sm-2 col-form-label col-form-label-sm">quantite</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control " id="quantite"  value="{{qcontrol.preprod.quantite}}" disabled>
+    </div>
+    
+  </div>
+</form>
 <form method="post" action="">
+
     {% csrf_token %}
-    {{ form.as_p}}
+    
+    <div class="form-group row">  
+      <label for="date_mise_a_jour" class="col-sm-2 col-form-label col-form-label-sm">date_mise_a_jour </label>
+      <div class="col-sm-6">
+      {{form.date_mise_a_jour}}
+      </div>
+    </div>
+    <div class="form-group row">  
+      <label for="carte_ok" class="col-sm-2 col-form-label col-form-label-sm">carte_ok </label>
+      <div class="col-sm-6">
+      {{form.carte_ok}}
+      </div>
+    </div>
+    <div class="form-group row">  
+      <label for="rejet" class="col-sm-2 col-form-label col-form-label-sm">rejet </label>
+      <div class="col-sm-6">
+      {{form.rejet}}
+      </div>
+    </div>
+    <div class="form-group row">  
+      <label for="retoure_stock" class="col-sm-2 col-form-label col-form-label-sm">retoure_stock </label>
+      <div class="col-sm-6">
+      {{form.retoure_stock}}
+      </div>
+    </div>
+    <div class="form-group row">  
+      <label for="autres" class="col-sm-2 col-form-label col-form-label-sm">autres </label>
+      <div class="col-sm-6">
+      {{form.autres}}
+      </div>
+    </div>
+    <div class="form-group row">  
+      <label for="commentaire" class="col-sm-2 col-form-label col-form-label-sm">commentaire </label>
+      <div class="col-sm-6">
+      {{form.commentaire}}
+      </div>
+    </div>
+    
     <div class="row">
         <div class="col">
             {% if object %}
