@@ -22,12 +22,14 @@ def preprod_liste(request):
             return redirect(url)
     else:
         form = PreprodSearchForm()
-        
+        date_form = request.GET.get("date","")
         packid_form = request.GET.get("packid","")
         odc_form = request.GET.get("odc","")
         quantite_form = request.GET.get("quantite","")
         
-        
+        if date_form is not None:
+            preprod_liste = preprod_liste.filter(date_mise_a_jour__icontains= date_form)
+            form.fields['date'].intial = date_form 
         
         if packid_form is not None:
             preprod_liste = preprod_liste.filter(pack_id__icontains= packid_form)

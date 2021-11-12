@@ -13,101 +13,86 @@
           </li>
 {% endblock %}
 {% block content %}
+<fieldset>
+  <legend>Controle Qualité du Pack : {{qcontrol.preprod.pack_id}} : </legend>
 
-{% if object %}
-<h3>Controle Qualité du Pack : {{qcontrol.preprod.pack_id}}</h3>
-{% else %}
-<h3>Créer une nouvelle entrée</h3>
-{% endif %}
+<h3></h3>
 
-
-<form>
-  <div class="form-group row">
-    
+<form style="text-align:center;">
+  <div class="form-group row" >
     <label for="packid" class="col-sm-2 col-form-label col-form-label-sm">pack_id</label>
     <div class="col-sm-6">
       <input type="text" class="form-control form-control-sm" id="pakid"  value=" {{qcontrol.preprod.pack_id}}"  disabled>
     </div>
-   
   </div>
   <div class="form-group row">  
-    
     <label for="odc" class="col-sm-2 col-form-label col-form-label-sm">odc</label>
     <div class="col-sm-6">
       <input type="text" class="form-control " id="odc"  value="{{qcontrol.preprod.odc}}" disabled>
     </div>
-    
   </div>
   <div class="form-group row">
-    
     <label for="machine" class="col-sm-2 col-form-label col-form-label-sm">machine</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control form-control-sm" id="machine"  value=" {{qcontrol.preprod.machine_name}}" disabled>
+      <input type="text" class="form-control form-control-sm" id="machine"  value=" {{qcontrol.preprod.machine}}" disabled>
     </div>
-   
   </div>
   <div class="form-group row">  
-    
     <label for="quantite" class="col-sm-2 col-form-label col-form-label-sm">quantite</label>
     <div class="col-sm-6">
       <input type="text" class="form-control " id="quantite"  value="{{qcontrol.preprod.quantite}}" disabled>
     </div>
-    
+  </div>
+  <div class="form-group row">
+    <label for="rejet_machine" class="col-sm-2 col-form-label col-form-label-sm">rejet_machine</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control form-control-sm" id="rejet_machine"  value=" {{qcontrol.preprod.rejet_machine}}" disabled>
+    </div>
+  </div>
+  <div class="form-group row">  
+    <label for="retoure_stock" class="col-sm-2 col-form-label col-form-label-sm">retoure_stock</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control " id="retoure_stock"  value="{{qcontrol.preprod.retoure_stock}}" disabled>
+    </div>
+  </div>
+  <div class="form-group row">  
+    <label for="carte_perso_ok" class="col-sm-2 col-form-label col-form-label-sm">carte_perso_ok</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control " id="carte_perso_ok"  value="{{qcontrol.preprod.carte_perso_ok}}" disabled>
+    </div>
   </div>
 </form>
-<form method="post" action="">
+<form method="post" action="" style="text-align:center;">
 
     {% csrf_token %}
-    
-    <div class="form-group row">  
-      <label for="date_mise_a_jour" class="col-sm-2 col-form-label col-form-label-sm">date_mise_a_jour </label>
-      <div class="col-sm-6">
-      {{form.date_mise_a_jour}}
-      </div>
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        <div class="form-group row">  
+          <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label col-form-label-sm">{{ field.label }} </label>
+          <div class="col-sm-6">
+          {{ field }}
+          </div>
+        </div>
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
     </div>
-    <div class="form-group row">  
-      <label for="carte_ok" class="col-sm-2 col-form-label col-form-label-sm">carte_ok </label>
-      <div class="col-sm-6">
-      {{form.carte_ok}}
-      </div>
-    </div>
-    <div class="form-group row">  
-      <label for="rejet" class="col-sm-2 col-form-label col-form-label-sm">rejet </label>
-      <div class="col-sm-6">
-      {{form.rejet}}
-      </div>
-    </div>
-    <div class="form-group row">  
-      <label for="retoure_stock" class="col-sm-2 col-form-label col-form-label-sm">retoure_stock </label>
-      <div class="col-sm-6">
-      {{form.retoure_stock}}
-      </div>
-    </div>
-    <div class="form-group row">  
-      <label for="autres" class="col-sm-2 col-form-label col-form-label-sm">autres </label>
-      <div class="col-sm-6">
-      {{form.autres}}
-      </div>
-    </div>
-    <div class="form-group row">  
-      <label for="commentaire" class="col-sm-2 col-form-label col-form-label-sm">commentaire </label>
-      <div class="col-sm-6">
-      {{form.commentaire}}
-      </div>
-    </div>
-    
+    {% endfor %}  
     <div class="row">
-        <div class="col">
-            {% if object %}
-            <a href="{% url 'detail_qcontrol' object.id %}" class="btn btn-secondary">Annuler</a>
-            {% else %}
-            <a href="{% url 'qcontrols' %}" class="btn btn-secondary">Annuler</a>
-            {% endif %}
-        </div>
-        <div class="col">
-            <input class="btn btn-info" type="submit" />
-        </div>
-    </div>
-
+      <div class="col">
+          {% if object %}
+          <a href="{% url 'detail_qcontrol' object.id %}" class="btn btn-secondary">Annuler</a>
+          {% else %}
+          <a href="{% url 'qcontrols' %}" class="btn btn-secondary">Annuler</a>
+          {% endif %}
+      </div>
+      <div class="col">
+          <input class="btn btn-info" type="submit" />
+      </div>
+  </div>
 </form>
+</fieldset>
+</br>
+</br>
 {% endblock %}

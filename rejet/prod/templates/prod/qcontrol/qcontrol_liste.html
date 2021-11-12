@@ -37,9 +37,7 @@
       </div>
   </div>
 </div>
-<div class="text-right">
-  <a href="{% url 'create_qcontrol' %}" class="btn btn-info">Ajouter une entree</a>
-</div>
+
 {% endblock %}
 {% block content %}
 <div>
@@ -51,24 +49,34 @@
                 <th>machine</th>
                 <th>N°ODC</th>
                 <th>Quantité</th>
-                <th >carte ok </th>
-                <th>rejet</th>
+                <th >carte perso ok  </th>
+                <th>rejet machine</th>
                 <th>retour au stock</th>
+                <th>Cartes Embalees</th>
+                <th>ab</th>
+                <th>reprod</th>
+                <th>autres</th>
                 <th>commentaire</th>
+                <th>action</th>
             </tr>
         </thead>
         <tbody>
             {% for qual in qcontrol_liste %}
-            <tr {% if qual.date_mise_a_jour is  None  %} style="background-color:rgb(245, 212, 212);" {% endif %}>
+            <tr {% if qual.ab is  None  %} style="background-color:rgb(245, 212, 212);" {% endif %}>
                 <td><a href="{% url 'detail_qcontrol' qual.id %}">{{ qual.preprod.pack_id }}</td>
-                <td >{{ qual.date_mise_a_jour }}</td>
-                <td>{{ qual.preprod.machine_name }}</td>
+                <td >{{qual.date_mise_a_jour|date:"d-m-Y"}}</td>
+                <td>{{ qual.preprod.machine }}</td>
                 <td>{{ qual.preprod.odc }}</td>
                 <td>{{ qual.preprod.quantite }}</td>
-                <td>{{ qual.carte_ok }}</td>
-                <td>{{ qual.rejet }}</td>
-                <td>{{ qual.retoure_stock }}</td>
-                <td>{{ qual.commentaire}}</td>
+                <td>{{ qual.preprod.carte_perso_ok }}</td>
+                <td>{{ qual.preprod.rejet_machine }}</td>
+                <td>{{ qual.preprod.retoure_stock }}</td>
+                <td>{{ qual.carte_embalee }}</td>
+                <td>{{ qual.ab }}</td>
+                <td>{{ qual.reprod }}</td>
+                <td>{{ qual.autres}}</td>
+                <td style="overflow: hidden;">{{ qual.commentaire}}</td>
+                <td><a href="{% url 'update_qcontrol' qual.id %}">modifier</td>
             </tr>
             {% endfor %}
         </tbody>

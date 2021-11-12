@@ -13,32 +13,39 @@
           </li>
 {% endblock %}
 {% block ajout %}
-<div class="raw p-4">
-  <div class="col-sm-12 mt-3">
+<div class="raw p-1">
+  <div class="col-sm-8 mt-3">
       <div class= "card">
           <div class="card-header">
               Ajout / Recherche
           </div>
           <form action="{% url 'preprods' %}" method="post">
+            
               <div class="card-body">
-                  {%csrf_token %}
-                  <label for="packid"> </label>
-                  {{ form.packid}}
-                  <label for="doc"> </label>
-                  {{ form.odc}}
-                  <label for="quantite"> </label>
-                  {{ form.quantite}}
-                  <div class="text-left">
-                  <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Recherche</button>    
-                  </div>                  
+                {%csrf_token %}
+                <div class="md-form md-outline input-with-post-icon datepicker"> 
+                  {{ form.date}}
+                  <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                  </div>
+                </div>
+                </br>
+                <div> {{ form.packid}} {{ form.odc}} {{ form.quantite}} 
+                  <div class="text-right">
+                    <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Recherche</button>    
+                    </div>     
+                </div>
+                                           
               </div>
           </form>
       </div>
   </div>
 </div>
+
 <div class="text-right">
   <a href="{% url 'create_preprod' %}" class="btn btn-info">Ajouter une entree</a>
 </div>
+</br>
 {% endblock %}
 {% block content %}
 <div>
@@ -62,8 +69,8 @@
             {% for prod in preprod_liste %}
             <tr>
                 <td><a href="{% url 'detail_preprod' prod.id %}">{{ prod.pack_id }}</td>
-                <td>{{ prod.date_mise_a_jour }}</td>
-                <td>{{ prod.machine_name }}</td>
+                <td>{{ prod.date_mise_a_jour|date:"d-m-Y"  }}</td>
+                <td>{{ prod.machine }}</td>
                 <td>{{ prod.odc }}</td>
                 <td>{{ prod.quantite }}</td>
                 <td>{{ prod.carte_perso_ok }}</td>

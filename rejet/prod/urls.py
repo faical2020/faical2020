@@ -1,3 +1,7 @@
+"""
+path('qcontrols/create', qcontrol.CreateQcontrol.as_view() ,name='create_qcontrol'),
+"""
+
 from django.contrib import admin
 from django.urls import path
 from django.views.generic.detail import DetailView
@@ -16,7 +20,6 @@ urlpatterns = [
     DetailView.as_view(model=Preprod, template_name="prod/preprod/preprod_detail.html"),
     name='detail_preprod'),
     path('qcontrols', qcontrol.qcontrol_liste ,name='qcontrols'),
-    path('qcontrols/create', qcontrol.CreateQcontrol.as_view() ,name='create_qcontrol'),
     path('qcontrols/update/<int:pk>', qcontrol.UpdateQcontrol.as_view() ,name='update_qcontrol'),
     path('qcontrols/<int:pk>',
     DetailView.as_view(model=Qcontrol, template_name="prod/qcontrol/qcontrol_detail.html"),

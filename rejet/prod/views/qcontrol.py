@@ -45,8 +45,8 @@ def qcontrol_liste(request):
             qcontrol_liste = qcontrol_liste.filter(preprod__quantite__icontains= quantite_form)
             form.fields['quantite'].intial = quantite_form  
 
-    p1 = qcontrol_liste.filter(rejet__isnull=True).order_by('-preprod__pack_id')
-    p2 = qcontrol_liste.filter(rejet__isnull=False).order_by('-preprod__pack_id')
+    p1 = qcontrol_liste.filter(ab__isnull=True).order_by('-preprod__pack_id')
+    p2 = qcontrol_liste.filter(ab__isnull=False).order_by('-preprod__pack_id')
     
     combined_results = list(chain(p1, p2))
     paginator = Paginator(combined_results,10)

@@ -15,23 +15,39 @@
 {% block content %}
 
 {% if object %}
-<h3>Modification de {{object.pack_id}}</h3>
+<h3>Modification du Pack-ID:  {{object.pack_id}}</h3>
 {% else %}
 <h3>Créer une nouvelle entrée</h3>
 {% endif %}
-
-<form method="post" action="">
+        </br>
+        </br>
+<form method="post" action="" style="text-align:center;">
     {% csrf_token %}
-    {{ form.as_p}}
-    <div class="row">
-        <div class="col">
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        <div class="form-group row">  
+          <label for="{{ field.id_for_label }}" class="col-sm-3 col-form-label col-form-label-sm">{{ field.label }} </label>
+          <div class="col-sm-3">
+          {{ field }}
+          </div>
+        </div>
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}  
+
+
+    <div class="form-group row">
+        <div class="col-sm-4">
             {% if object %}
             <a href="{% url 'detail_preprod' object.id %}" class="btn btn-secondary">Annuler</a>
             {% else %}
             <a href="{% url 'preprods' %}" class="btn btn-secondary">Annuler</a>
             {% endif %}
         </div>
-        <div class="col">
+        <div class="col-sm-4">
             <input class="btn btn-info" type="submit" />
         </div>
     </div>

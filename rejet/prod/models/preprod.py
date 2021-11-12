@@ -2,8 +2,14 @@ from django.db import models
 
 # Create your models here.
 class Preprod(models.Model):
+    MachineName  = [
+        ('MAR1', 'MAR1'),
+        ('MAR2', 'MAR2'),
+    ]
+
     date_mise_a_jour = models.DateField(verbose_name="date de mise à jour",auto_now=False)
-    machine_name = models.CharField(verbose_name="nom de la machine",max_length=64)
+    
+    machine = models.CharField(choices=MachineName, max_length=4,default='MAR1')
     pack_id = models.IntegerField(verbose_name="ID du Pck",unique=True)
     odc = models.IntegerField(verbose_name="N° ODC",)
     quantite = models.IntegerField(verbose_name="Quantité",)
