@@ -1,6 +1,6 @@
-{% extends "prod/base.html" %}
+{% extends "prod/index.html" %}
 {% block sidebar %}
-        <li class="header">production</li>
+        <!--li class="header">production</li>
           <li classe="{% if selected == 'home' %}active{% endif %}">
             <a href="{% url 'hello' %}">
               <i class="fa fa-home" aria-hidden="true"></i> Homepage
@@ -9,6 +9,12 @@
           <li classe="{% if selected == 'preprods' %}active{% endif %}">
             <a href="{% url 'preprods' %}">
               <i class="fa fa-tachometer" aria-hidden="true"></i> production
+            </a>
+          </li-->
+          <li class="nav-item">
+            <a class="nav-link {% if selected == 'preprods' %}active{% endif %}" aria-current="page" href="{% url 'preprods' %}">
+              <span data-feather="home"></span>
+              Production
             </a>
           </li>
 {% endblock %}
