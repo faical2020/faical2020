@@ -76,7 +76,7 @@
                 <td>{{ prod.carte_perso_ok }}</td>
                 <td>{{ prod.rejet_machine }}</td>
                 <td>{{ prod.retoure_stock }}</td>
-                <td>{{ prod.commentaire}}</td>
+                <td  class="td_faical_slice" >{{ prod.commentaire}}</td>
                 <td><a href="{% url 'update_preprod' prod.id %}">modifier</td>
             </tr>
             {% endfor %}

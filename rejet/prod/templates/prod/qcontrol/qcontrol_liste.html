@@ -29,6 +29,8 @@
                   {{ form.odc}}
                   <label for="quantite"> </label>
                   {{ form.quantite}}
+              </br>
+              </br>
                   <div class="text-left">
                   <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Recherche</button>    
                   </div>                  
@@ -64,7 +66,7 @@
             {% for qual in qcontrol_liste %}
             <tr {% if qual.ab is  None  %} style="background-color:rgb(245, 212, 212);" {% endif %}>
                 <td><a href="{% url 'detail_qcontrol' qual.id %}">{{ qual.preprod.pack_id }}</td>
-                <td >{{qual.date_mise_a_jour|date:"d-m-Y"}}</td>
+                <td style="overflow: hidden;">{{qual.date_mise_a_jour|date:"d-m-Y"}}</td>
                 <td>{{ qual.preprod.machine }}</td>
                 <td>{{ qual.preprod.odc }}</td>
                 <td>{{ qual.preprod.quantite }}</td>
@@ -75,8 +77,8 @@
                 <td>{{ qual.ab }}</td>
                 <td>{{ qual.reprod }}</td>
                 <td>{{ qual.autres}}</td>
-                <td style="overflow: hidden;">{{ qual.commentaire}}</td>
-                <td><a href="{% url 'update_qcontrol' qual.id %}">modifier</td>
+                <td class="td_faical_slice" style="overflow: hidden;">{{ qual.commentaire}}</td>
+                <td style="overflow: hidden;"><a href="{% url 'update_qcontrol' qual.id %}">modifier</td>
             </tr>
             {% endfor %}
         </tbody>
