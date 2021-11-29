@@ -1,16 +1,11 @@
 {% extends "prod/base.html" %}
 {% block sidebar %}
-        <li class="header">Qualité control</li>
-          <li classe="{% if selected == 'home' %}active{% endif %}">
-            <a href="{% url 'hello' %}">
-              <i class="fa fa-home" aria-hidden="true"></i> Homepage
-            </a>
-          </li>
-          <li classe="{% if selected == 'qcontrols' %}active{% endif %}">
-            <a href="{% url 'qcontrols' %}">
-              <i class="fa fa-tachometer" aria-hidden="true"></i> qualité/control
-            </a>
-          </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if selected == 'qcontrols' %}active{% endif %}" aria-current="page" href="{% url 'qcontrols' %}">
+                        <span data-feather="home"></span>
+                        qualité/control
+                        </a>
+                    </li>
 {% endblock %}
 
 {% block ajout %}
@@ -42,24 +37,25 @@
 
 {% endblock %}
 {% block content %}
-<div>
-    <table>
+<h2>Section title</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
         <thead>
-            <tr>
-                <th> pack_ID</th>
-                <th>date </th>
-                <th>machine</th>
-                <th>N°ODC</th>
-                <th>Quantité</th>
-                <th >carte perso ok  </th>
-                <th>rejet machine</th>
-                <th>retour au stock</th>
-                <th>Cartes Embalees</th>
-                <th>ab</th>
-                <th>reprod</th>
-                <th>autres</th>
-                <th>commentaire</th>
-                <th>action</th>
+           <tr>
+                <th scope="col"> pack_ID</th>
+                <th scope="col">date </th>
+                <th scope="col">machine</th>
+                <th scope="col">N°ODC</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">carte perso ok  </th>
+                <th scope="col">rejet machine</th>
+                <th scope="col">retour au stock</th>
+                <th scope="col">Cartes Embalees</th>
+                <th scope="col">ab</th>
+                <th scope="col">reprod</th>
+                <th scope="col">autres</th>
+                <th scope="col">commentaire</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -78,7 +74,7 @@
                 <td>{{ qual.reprod }}</td>
                 <td>{{ qual.autres}}</td>
                 <td class="td_faical_slice" style="overflow: hidden;">{{ qual.commentaire}}</td>
-                <td style="overflow: hidden;"><a href="{% url 'update_qcontrol' qual.id %}">modifier</td>
+                <td style="overflow: hidden;"><a href="{% url 'update_qcontrol' qual.id %}"><i data-feather="edit"></td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,6 +1,6 @@
 {% extends "prod/base.html" %}
 {% block sidebar %}
-        <li class="header">Qualité control</li>
+        <!--li class="header">Qualité control</li>
           <li classe="{% if selected == 'home' %}active{% endif %}">
             <a href="{% url 'hello' %}">
               <i class="fa fa-home" aria-hidden="true"></i> Homepage
@@ -9,6 +9,12 @@
           <li classe="{% if selected == 'qcontrols' %}active{% endif %}">
             <a href="{% url 'qcontrols' %}">
               <i class="fa fa-tachometer" aria-hidden="true"></i> qualité/control
+            </a>
+          </li-->
+          <li class="nav-item">
+            <a class="nav-link {% if selected == 'qcontrols' %}active{% endif %}" aria-current="page" href="{% url 'qcontrols' %}">
+              <span data-feather="home"></span>
+              qualité/control
             </a>
           </li>
 {% endblock %}

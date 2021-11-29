@@ -1,4 +1,4 @@
-{% extends "prod/index.html" %}
+{% extends "prod/base.html" %}
 {% block sidebar %}
         <!--li class="header">production</li>
           <li classe="{% if selected == 'home' %}active{% endif %}">
@@ -73,7 +73,7 @@
                 <th scope="col">rejet_machine</th>
                 <th scope="col">retour au stock</th>
                 <th scope="col">commentaire</th>
-                <th scope="col">action</th>
+                <th scope="col"></th>
 
             </tr>
         </thead>
@@ -89,7 +89,7 @@
                 <td>{{ prod.rejet_machine }}</td>
                 <td>{{ prod.retoure_stock }}</td>
                 <td  class="td_faical_slice" >{{ prod.commentaire}}</td>
-                <td><a href="{% url 'update_preprod' prod.id %}">modifier</td>
+                <td><a href="{% url 'update_preprod' prod.id %}"><i data-feather="edit"></i></td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,4 +1,4 @@
-{% extends "prod/index.html" %}
+{% extends "prod/base.html" %}
 {% block sidebar %}
         <!--li class="header">production</li>
           <li classe="{% if selected == 'home' %}active{% endif %}">
@@ -23,7 +23,7 @@
     <div class="card-header">
         pack id : {{preprod.pack_id}}
         <a href="{% url 'update_preprod' preprod.id %}" class="close">
-            <i class="fas fa-pen"></i>
+            <i data-feather="edit"></i>
         </a>
     </div>
     <div class="card-body">
