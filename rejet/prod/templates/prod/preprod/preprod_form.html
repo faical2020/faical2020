@@ -1,23 +1,23 @@
-{% extends "prod/base.html" %}
-{% block sidebar %}
-        <!--li class="header">production</li>
-          <li classe="{% if selected == 'home' %}active{% endif %}">
-            <a href="{% url 'hello' %}">
-              <i class="fa fa-home" aria-hidden="true"></i> Homepage
-            </a>
-          </li>
-          <li classe="{% if selected == 'preprods' %}active{% endif %}">
-            <a href="{% url 'preprods' %}">
-              <i class="fa fa-tachometer" aria-hidden="true"></i> production
-            </a>
-          </li-->
-          <li class="nav-item">
-            <a class="nav-link {% if selected == 'preprods' %}active{% endif %}" aria-current="page" href="{% url 'preprods' %}">
-              <span data-feather="home"></span>
-              Production
-            </a>
-          </li>
+{% extends "prod/base1.html" %}
+
+{% block nouvelle_entree %}
+      <button class="btn btn-primary btn-sm d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="button">
+        <a href="{% url 'create_preprod' %}" style="text-decoration: none; color : white">Nouveau Package 
+          <span data-feather="file"></span> 
+        </a>
+      </button>
 {% endblock %}
+
+
+{% block sidebar %}
+        
+          <a class="nav-link {% if selected == 'preprods' %}active{% endif %}" aria-current="page" href="{% url 'preprods' %}">
+                          <div class="sb-nav-link-icon"><i data-feather="home"></i></div>
+                          Production
+          </a>
+{% endblock %}
+
+
 {% block content %}
 
 {% if object %}
@@ -25,38 +25,70 @@
 {% else %}
 <h3>Créer une nouvelle entrée</h3>
 {% endif %}
-        </br>
-        </br>
-<form method="post" action="" style="text-align:center;">
-    {% csrf_token %}
-    {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        <div class="form-group row">  
-          <label for="{{ field.id_for_label }}" class="col-sm-3 col-form-label col-form-label-sm">{{ field.label }} </label>
-          <div class="col-sm-3">
-          {{ field }}
+<div class="d-flex justify-content-center">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xl-9 col-md-6">
+          <div class="card bg-light p-1 mb-4">
+           
+           
+
+              <form method="post"  action="" style="text-align:center;">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="container  ">
+                    {{ field.errors }}
+                    <div class="row align-items-center pt-1 bg-light">
+                      <div class="col-4"> 
+                        <label for="{{ field.id_for_label }}">{{ field.label }} </label>
+                      </div>
+                      <div class="col-5">
+                          {{ field }}
+                      </div>
+                    
+                      {% if field.help_text %}
+                      <div class="col-4">
+                        <span class="help">{{ field.help_text|safe }}</span>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}  
+
+
+                <div class="d-flex justify-content-start  mt-5">
+                    <div class="col-sm-4">
+                        {% if object %}
+                        <a href="{% url 'detail_preprod' object.id %}" class="btn btn-secondary">Annuler</a>
+                        {% else %}
+                        <a href="{% url 'preprods' %}" class="btn btn-secondary">Annuler</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-4">
+                        <input class="btn btn-primary" type="submit" />
+                    </div>
+                </div>
+
+              </form>
           </div>
-        </div>
-        {% if field.help_text %}
-        <p class="help">{{ field.help_text|safe }}</p>
-        {% endif %}
+      </div>
+    
+      <!--div class="col-xl-3 col-md-6">
+          <div class="card bg-light p-1 mb-4">
+              <div class="card-body d-flex align-items-center justify-content-around"> cccccc
+                    <button class="btn btn-link" type="submit"><span data-feather="search"></span></button> 
+              </div>
+              <div class="card-body d-flex align-items-center justify-content-around"> cccccc
+                      <button class="btn btn-link" type="submit"><span data-feather="search"></span></button> 
+              </div>
+              <div class="card-body d-flex align-items-center justify-content-around"> cccccc
+                      <button class="btn btn-link" type="submit"><span data-feather="search"></span></button> 
+              </div>
+                    
+          </div>
+      </div-->
+
     </div>
-    {% endfor %}  
-
-
-    <div class="form-group row">
-        <div class="col-sm-4">
-            {% if object %}
-            <a href="{% url 'detail_preprod' object.id %}" class="btn btn-secondary">Annuler</a>
-            {% else %}
-            <a href="{% url 'preprods' %}" class="btn btn-secondary">Annuler</a>
-            {% endif %}
-        </div>
-        <div class="col-sm-4">
-            <input class="btn btn-info" type="submit" />
-        </div>
-    </div>
-
-</form>
+  </div>
+</div>
 {% endblock %}

@@ -1,55 +1,59 @@
-{% extends "prod/base.html" %}
+{% extends "prod/base1.html" %}
+
+{% block nouvelle_entree %}
+      <button class="btn btn-primary btn-sm d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" id="btnNavbarSearch" type="button">
+        <a href="{% url 'create_preprod' %}" style="text-decoration: none; color : white">Nouveau Package <span data-feather="file"></span> </a>
+      </button>
+{% endblock %}
+
+
 {% block sidebar %}
-        <!--li class="header">production</li>
-          <li classe="{% if selected == 'home' %}active{% endif %}">
-            <a href="{% url 'hello' %}">
-              <i class="fa fa-home" aria-hidden="true"></i> Homepage
-            </a>
-          </li>
-          <li classe="{% if selected == 'preprods' %}active{% endif %}">
-            <a href="{% url 'preprods' %}">
-              <i class="fa fa-tachometer" aria-hidden="true"></i> production
-            </a>
-          </li-->
-          <li class="nav-item">
-            <a class="nav-link {% if selected == 'preprods' %}active{% endif %}" aria-current="page" href="{% url 'preprods' %}">
-              <span data-feather="home"></span>
-              Production
-            </a>
-          </li>
+        
+          <a class="nav-link {% if selected == 'preprods/4' %}active{% endif %}" aria-current="page" href="{% url 'preprods' %}">
+                          <div class="sb-nav-link-icon"><i data-feather="home"></i></div>
+                          Production
+          </a>
+          
 {% endblock %}
 {% block content %}
-<div class="card">
-    <div class="card-header">
-        pack id : {{preprod.pack_id}}
+<div class="card m-3 ">
+    <div class="card-header d-flex align-items-center justify-content-around ">
+        <p>pack id :</p>
+        <p>{{preprod.pack_id}}</p>
         <a href="{% url 'update_preprod' preprod.id %}" class="close">
             <i data-feather="edit"></i>
         </a>
     </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col"><strong>pack</strong> : {{preprod.pack_id}}<br></div>
+    <div class="card-body p-4">
+
+        <div class="mb-3 row bg-light py-3">
+            <div class="col-sm-3 text-right " ><strong>pack</strong> :</div> <div class="col-sm-3">{{preprod.pack_id}}</div>
+            <div class="col-sm-3 text-right " ><strong>machine</strong> :</div> <div class="col-sm-3">{{preprod.machine}}</div>
+          </div>
+        <div class="mb-3 row bg-light py-3">
+          <div class="col-sm-3 text-right " ><strong>date</strong>:</div> <div class="col-sm-3">{{preprod.date_mise_a_jour}}</div>
+          <div class="col-sm-3 text-right " ><strong>machine</strong> :</div> <div class="col-sm-3">{{preprod.machine}}</div>
         </div>
-        <div class="row">
-            <div class="col"><strong>date</strong> : {{preprod.date_mise_a_jour}}<br></div>
-            <div class="col"><strong>machine</strong> : {{preprod.machine}}<br></div>
+        <div class="mb-3 row bg-light py-3">
+          <div class="col-sm-3 text-right " ><strong>odc</strong> :</div> <div class="col-sm-3"> {{preprod.odc}}</div>
+          <div class="col-sm-3 text-right " ><strong>quantite</strong> :</div> <div class="col-sm-3"> {{preprod.quantite}}</div>
         </div>
-        <div class="row">
-            <div class="col"><strong>odc</strong> : {{preprod.odc}}<br></div>
-            <div class="col"><strong>quantite</strong> : {{preprod.quantite}}<br></div>
+        <div class="mb-3 row bg-light py-3">
+          <div class="col-sm-3 text-right " ><strong>carte_perso_ok</strong> :</div> <div class="col-sm-3"> {{preprod.carte_perso_ok}}</div>
+          <div class="col-sm-3 text-right " ><strong>rejet_machine</strong> :</div> <div class="col-sm-3"> {{preprod.rejet_machine}}</div>
         </div>
-        <div class="row">
-            <div class="col"><strong>carte_perso_ok</strong> : {{preprod.carte_perso_ok}}<br></div>
-            <div class="col"><strong>rejet_machine</strong> : {{preprod.rejet_machine}}<br></div>
+        <div class="mb-3 row bg-light py-3">
+          <div class="col-sm-3 text-right " ><strong>retoure_stock</strong> :</div> <div class="col-sm-3"> {{preprod.retoure_stock}}</div>
+          <div class="col-sm-3 text-right " ><strong>autres</strong> :</div> <div class="col-sm-3"> {{preprod.autres}}</div>
         </div>
-        <div class="row">
-            <div class="col"><strong>retoure_stock</strong> : {{preprod.retoure_stock}}<br></div>
-            <div class="col"><strong>autres</strong> : {{preprod.autres}}<br></div>
+        <div class="mb-3 row bg-light py-3">
+          <div class="col-sm-3 text-right " ><strong>commentaire</strong> :</div> <div class="col-sm-9"> {{preprod.commentaire}}</div>
         </div>
-        <div class="row">
-            <div class="col"><strong>commentaire</strong> : {{preprod.commentaire}}<br></div>
-        </div>
+      </div>  
     </div>
 
 </div>
+
+
+
 {% endblock %}

@@ -25,7 +25,7 @@ class PreprodForm(ModelForm):
 class PreprodSearchForm(Form):
     
     
-    packid = CharField(required=False, widget= TextInput(attrs={'placeholder': "Select date"}) )
+    packid = CharField(required=False, widget= TextInput(attrs={'placeholder': "Pack_id"}) )
     odc = CharField(required=False, widget= TextInput(attrs={'placeholder': 'odc'}) )
     quantite = CharField(required=False, widget= TextInput(attrs={'placeholder': 'quantité'}) )
     date = CharField(required=False, widget= TextInput(attrs={'placeholder': 'date'}) )
